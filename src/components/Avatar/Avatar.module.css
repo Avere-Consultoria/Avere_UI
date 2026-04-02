@@ -1,0 +1,46 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 9999px;
+    /* rounded-full */
+    font-weight: var(--weight-medium);
+    background-color: var(--color-fundo);
+    color: var(--color-secundaria);
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-family);
+}
+
+/* Tamanhos */
+.sm {
+    height: 32px;
+    width: 32px;
+    font-size: 12px;
+}
+
+.md {
+    height: 40px;
+    width: 40px;
+    font-size: 14px;
+}
+
+.lg {
+    height: 56px;
+    width: 56px;
+    font-size: 16px;
+}
+
+.image {
+    aspect-ratio: 1 / 1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.initials {
+    text-transform: uppercase;
+    user-select: none;
+}

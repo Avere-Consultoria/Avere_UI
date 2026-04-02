@@ -1,0 +1,107 @@
+.wrapper {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    overflow: hidden;
+    background-color: var(--color-white);
+    font-family: var(--font-family);
+}
+
+.scrollContainer {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+    color: var(--color-secundaria);
+}
+
+.thead {
+    background-color: color-mix(in srgb, var(--color-fundo), transparent 60%);
+    border-bottom: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+}
+
+.th {
+    padding: 12px 24px;
+    font-size: 12px;
+    font-weight: var(--weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 30%);
+    white-space: nowrap;
+}
+
+.tr {
+    border-bottom: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 95%);
+    transition: background-color 0.2s ease;
+}
+
+.tr:hover {
+    background-color: color-mix(in srgb, var(--color-fundo), transparent 80%);
+}
+
+.trSelected {
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 92%) !important;
+}
+
+.td {
+    padding: 16px 24px;
+    white-space: nowrap;
+    font-weight: var(--weight-medium);
+    color: color-mix(in srgb, var(--color-secundaria), transparent 10%);
+}
+
+.checkboxCell {
+    width: 48px;
+    padding: 0 16px;
+    text-align: center;
+}
+
+.actionsCell {
+    width: 64px;
+    padding: 0 24px;
+    text-align: right;
+}
+
+.sortButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.sortButton:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.emptyState {
+    padding: 48px 24px;
+    text-align: center;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 40%);
+}
+
+.thContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sortIconActive {
+    color: var(--color-primaria);
+}
+
+.sortIconInactive {
+    opacity: 0.3;
+}
+
+.destructiveItem {
+    color: var(--color-erro);
+}

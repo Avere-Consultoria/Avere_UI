@@ -1,0 +1,127 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    font-family: var(--font-family);
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 10%);
+}
+
+.triggerWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.inputField {
+    width: 100%;
+    height: 40px;
+    padding: 8px 36px 8px 12px;
+    background-color: transparent;
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 80%);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--color-secundaria);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.inputField:focus {
+    border-color: var(--color-primaria);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primaria), transparent 80%);
+}
+
+.inputField::placeholder {
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+}
+
+.icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+    pointer-events: none;
+    transition: transform 0.2s ease;
+}
+
+.iconOpen {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+/* Menu Dropdown */
+.dropdown {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    width: 100%;
+    z-index: 50;
+    background-color: var(--color-white);
+    border-radius: 8px;
+    border: 1px solid var(--color-fundo);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 4px;
+    animation: slideDown 0.2s ease-out;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 6px;
+    color: var(--color-secundaria);
+    transition: background-color 0.2s;
+}
+
+.option:hover {
+    background-color: color-mix(in srgb, var(--color-fundo), transparent 70%);
+}
+
+.optionSelected {
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 90%);
+    font-weight: 600;
+}
+
+.noResults {
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.inputError {
+    border-color: var(--color-erro);
+}
+
+.checkIcon {
+    color: var(--color-primaria);
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: var(--color-erro);
+    font-weight: 500;
+    margin-top: 4px;
+}

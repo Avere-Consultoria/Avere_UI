@@ -1,0 +1,132 @@
+.base {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    /* rounded-full */
+    border: 1px solid transparent;
+    padding: 2px 10px;
+    /* py-0.5 px-2.5 */
+    font-size: 12px;
+    /* text-xs */
+    font-weight: var(--weight-semibold);
+    font-family: var(--font-family);
+    transition: all 0.2s ease;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+/* --- PRIMARIA --- */
+.primaria_solid {
+    background-color: var(--color-primaria);
+    color: var(--color-white);
+}
+
+.primaria_solid:hover {
+    filter: brightness(0.9);
+}
+
+.primaria_outline {
+    border-color: var(--color-primaria);
+    color: var(--color-primaria);
+    background-color: transparent;
+}
+
+.primaria_ghost {
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 90%);
+    color: var(--color-primaria);
+}
+
+.primaria_ghost:hover {
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 80%);
+}
+
+/* --- SECUNDARIA --- */
+.secundaria_solid {
+    background-color: var(--color-secundaria);
+    color: var(--color-white);
+}
+
+.secundaria_solid:hover {
+    filter: brightness(0.9);
+}
+
+.secundaria_outline {
+    border-color: var(--color-secundaria);
+    color: var(--color-secundaria);
+    background-color: transparent;
+}
+
+.secundaria_ghost {
+    background-color: color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    color: var(--color-secundaria);
+}
+
+.secundaria_ghost:hover {
+    background-color: color-mix(in srgb, var(--color-secundaria), transparent 80%);
+}
+
+/* --- ALERTA --- */
+.alerta_solid {
+    background-color: var(--color-alerta);
+    color: var(--color-white);
+}
+
+.alerta_solid:hover {
+    filter: brightness(0.9);
+}
+
+.alerta_outline {
+    border-color: var(--color-alerta);
+    color: var(--color-alerta);
+    background-color: transparent;
+}
+
+.alerta_ghost {
+    background-color: color-mix(in srgb, var(--color-alerta), transparent 90%);
+    color: var(--color-alerta);
+}
+
+.alerta_ghost:hover {
+    background-color: color-mix(in srgb, var(--color-alerta), transparent 80%);
+}
+
+/* --- ERRO --- */
+.erro_solid {
+    background-color: var(--color-erro);
+    color: var(--color-white);
+}
+
+.erro_solid:hover {
+    filter: brightness(0.9);
+}
+
+.erro_outline {
+    border-color: var(--color-erro);
+    color: var(--color-erro);
+    background-color: transparent;
+}
+
+.erro_ghost {
+    background-color: color-mix(in srgb, var(--color-erro), transparent 90%);
+    color: var(--color-erro);
+}
+
+.erro_ghost:hover {
+    background-color: color-mix(in srgb, var(--color-erro), transparent 80%);
+}
+
+/* --- NEUTRO --- */
+.neutro_solid {
+    background-color: color-mix(in srgb, var(--color-secundaria), transparent 40%);
+    color: var(--color-white);
+}
+
+.neutro_outline {
+    border-color: color-mix(in srgb, var(--color-secundaria), transparent 40%);
+    color: color-mix(in srgb, var(--color-secundaria), transparent 40%);
+}
+
+.neutro_ghost {
+    background-color: color-mix(in srgb, var(--color-secundaria), transparent 95%);
+    color: color-mix(in srgb, var(--color-secundaria), transparent 40%);
+}

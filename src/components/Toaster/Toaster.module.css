@@ -1,0 +1,53 @@
+.toast {
+    font-family: var(--font-family) !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%) !important;
+    background-color: var(--color-white) !important;
+    color: var(--color-secundaria) !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+}
+
+.description {
+    color: color-mix(in srgb, var(--color-secundaria), transparent 30%) !important;
+    font-size: 12px !important;
+}
+
+.actionButton {
+    background-color: var(--color-primaria) !important;
+    color: var(--color-white) !important;
+    border-radius: 4px !important;
+    font-weight: var(--weight-medium) !important;
+}
+
+.cancelButton {
+    background-color: var(--color-fundo) !important;
+    color: var(--color-secundaria) !important;
+    border-radius: 4px !important;
+}
+
+/* Tipos Específicos */
+.success {
+    background-color: var(--color-primaria) !important;
+    color: var(--color-white) !important;
+    border-color: var(--color-primaria) !important;
+}
+
+.error {
+    background-color: var(--color-erro) !important;
+    color: var(--color-white) !important;
+    border-color: var(--color-erro) !important;
+}
+
+.warning {
+    background-color: var(--color-alerta) !important;
+    color: var(--color-white) !important;
+    border-color: var(--color-alerta) !important;
+}
+
+.info {
+    background-color: var(--color-secundaria) !important;
+    color: var(--color-white) !important;
+    border-color: var(--color-secundaria) !important;
+}

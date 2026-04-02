@@ -1,0 +1,195 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    font-family: var(--font-family);
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 10%);
+}
+
+.dropzone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 160px;
+    /* h-40 */
+    padding: 24px 16px;
+    border: 2px dashed color-mix(in srgb, var(--color-secundaria), transparent 80%);
+    border-radius: 8px;
+    background-color: color-mix(in srgb, var(--color-fundo), transparent 90%);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+}
+
+/* Estados */
+.idle:hover {
+    background-color: color-mix(in srgb, var(--color-fundo), transparent 80%);
+    border-color: color-mix(in srgb, var(--color-secundaria), transparent 60%);
+}
+
+.dragging {
+    border-color: var(--color-primaria);
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 95%);
+    border-style: solid;
+}
+
+.uploading {
+    cursor: wait;
+    border-color: color-mix(in srgb, var(--color-secundaria), transparent 80%);
+}
+
+.success {
+    cursor: default;
+    border-color: color-mix(in srgb, var(--color-primaria), transparent 50%);
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 95%);
+}
+
+.error {
+    border-color: var(--color-erro);
+    background-color: color-mix(in srgb, var(--color-erro), transparent 95%);
+}
+
+.dropzone:focus-within {
+    box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-primaria);
+    border-style: solid;
+}
+
+/* Elementos Internos */
+.fileCard {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    padding: 8px 12px;
+    background-color: var(--color-white);
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    border-radius: 6px;
+    margin-top: 8px;
+}
+
+.errorMessage {
+    font-size: 12px;
+    color: var(--color-erro);
+    font-weight: 500;
+}
+
+/* Input nativo escondido */
+.hiddenInput {
+    display: none;
+}
+
+/* Estados de conteúdo interno */
+.idleContent,
+.uploadingContent,
+.successContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.successContent {
+    width: 100%;
+}
+
+/* Ícone de upload */
+.uploadIcon {
+    margin-bottom: 12px;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+}
+
+.uploadIconError {
+    color: var(--color-erro);
+}
+
+/* Textos idle */
+.uploadText {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.uploadClickText {
+    font-weight: 600;
+    color: var(--color-secundaria);
+}
+
+.uploadHint {
+    font-size: 12px;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+    margin-top: 4px;
+}
+
+/* Estado uploading */
+.spinner {
+    margin-bottom: 16px;
+}
+
+.uploadingText {
+    font-size: 14px;
+    font-weight: 500;
+    animation: uploadPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes uploadPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* Estado success */
+.successIcon {
+    color: var(--color-primaria);
+    margin-bottom: 12px;
+}
+
+/* Info do arquivo */
+.fileInfo {
+    flex: 1;
+    overflow: hidden;
+    text-align: left;
+}
+
+.fileName {
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fileSize {
+    font-size: 12px;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+}
+
+.fileIcon {
+    margin-right: 12px;
+    color: color-mix(in srgb, var(--color-secundaria), transparent 40%);
+    flex-shrink: 0;
+}
+
+.fileClearBtn {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-secundaria);
+    display: inline-flex;
+    align-items: center;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.fileClearBtn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}

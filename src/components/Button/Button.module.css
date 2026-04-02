@@ -1,0 +1,104 @@
+/* Estilos Base */
+.buttonBase {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border-radius: 6px;
+    font-family: var(--font-family);
+    /* Usa Montserrat do Token */
+    font-weight: var(--weight-medium);
+    transition: all 0.2s ease-in-out;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    gap: 8px;
+}
+
+.buttonBase:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Hover Universal: Escurece 10% a cor de fundo independente de qual seja */
+.buttonBase:not(:disabled):hover {
+    filter: brightness(0.9);
+}
+
+/* Tamanhos */
+.sm {
+    height: 32px;
+    padding: 0 12px;
+    font-size: var(--text-body-s-size, 12px);
+}
+
+.md {
+    height: 40px;
+    padding: 0 16px;
+    font-size: var(--text-body-m-size);
+}
+
+.lg {
+    height: 48px;
+    padding: 0 32px;
+    font-size: var(--text-title-m-size);
+}
+
+/* Intents (Cores via Tokens) */
+.primaria {
+    background-color: var(--color-primaria);
+    color: var(--color-white);
+}
+
+.secundaria {
+    background-color: var(--color-secundaria);
+    color: var(--color-white);
+}
+
+.alerta {
+    background-color: var(--color-alerta);
+    color: var(--color-white);
+}
+
+.erro {
+    background-color: var(--color-erro);
+    color: var(--color-white);
+}
+
+/* Variantes */
+.outline {
+    background-color: transparent;
+    border: 2px solid var(--color-secundaria);
+    color: var(--color-secundaria);
+}
+
+.outline:hover {
+    background-color: rgba(8, 31, 40, 0.05);
+    /* Baseado na secundária */
+    filter: none;
+}
+
+.ghost {
+    background-color: transparent;
+    color: var(--color-secundaria);
+}
+
+.ghost:hover {
+    background-color: rgba(8, 31, 40, 0.05);
+    filter: none;
+}
+
+/* Animação do Loader */
+.animateSpin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

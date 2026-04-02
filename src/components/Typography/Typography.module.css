@@ -1,0 +1,77 @@
+.base {
+    font-family: var(--font-family);
+    /* Montserrat */
+    color: var(--color-secundaria);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.h1 {
+    scroll-margin: 5rem;
+    /* Baseado no Display Small do seu guia (40/48) */
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: var(--weight-bold);
+    letter-spacing: -0.025em;
+}
+
+/* Responsividade do h1: No desktop vira Display Medium (48/56) */
+@media (min-width: 1024px) {
+    .h1 {
+        font-size: 48px;
+        line-height: 56px;
+    }
+}
+
+.h2 {
+    scroll-margin: 5rem;
+    /* Fiel ao Headline Large do seu guia (32/40) */
+    font-size: 32px;
+    line-height: 40px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.015em;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    padding-bottom: 0.5rem;
+}
+
+.h2:first-child {
+    margin-top: 0;
+}
+
+.p {
+    /* Fiel ao Body Medium do seu guia (14/20) */
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: var(--weight-regular);
+    margin-bottom: 1rem;
+}
+
+.h3 {
+    scroll-margin: 5rem;
+    /* Fiel ao Headline Large do seu guia (32/40) */
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.015em;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    padding-bottom: 0.5rem;
+}
+
+.h3:first-child {
+    margin-top: 0;
+}
+
+.h4 {
+    scroll-margin: 5rem;
+    /* Fiel ao Headline Large do seu guia (32/40) */
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: var(--weight-semibold);
+    letter-spacing: -0.015em;
+    border-bottom: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    padding-bottom: 0.5rem;
+}
+
+.h4:first-child {
+    margin-top: 0;
+}

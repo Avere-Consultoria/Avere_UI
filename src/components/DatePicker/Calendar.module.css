@@ -1,0 +1,107 @@
+.months {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (min-width: 640px) {
+    .months {
+        flex-direction: row;
+    }
+}
+
+.month {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.caption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.caption_label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-secundaria);
+    padding: 0 4px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.head_cell {
+    color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: capitalize;
+    width: 40px;
+    height: 40px;
+}
+
+.cell {
+    position: relative;
+    padding: 0;
+    text-align: center;
+    font-size: 14px;
+}
+
+.day {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    color: var(--color-secundaria);
+}
+
+.day:hover {
+    background-color: var(--color-fundo);
+}
+
+.day_selected {
+    background-color: var(--color-primaria) !important;
+    color: var(--color-white) !important;
+    font-weight: 600;
+}
+
+.day_today {
+    color: var(--color-primaria);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.day_outside {
+    opacity: 0.3;
+}
+
+.day_range_middle {
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 90%);
+    color: var(--color-primaria);
+    border-radius: 0;
+}
+
+.day_range_start {
+    border-radius: 6px 0 0 6px;
+}
+
+.day_range_end {
+    border-radius: 0 6px 6px 0;
+}

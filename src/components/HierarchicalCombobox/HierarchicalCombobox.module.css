@@ -1,0 +1,142 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 8px;
+    /* gap-2 */
+    overflow-x: auto;
+    padding-bottom: 4px;
+    font-family: var(--font-family);
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+    /* Safari/Chrome */
+}
+
+.levelWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.trigger {
+    display: flex;
+    height: 40px;
+    /* h-10 */
+    width: 100%;
+    min-width: 220px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 80%);
+    background-color: var(--color-white);
+    padding: 8px 12px;
+    font-size: 14px;
+    color: var(--color-secundaria);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.trigger:focus {
+    border-color: var(--color-primaria);
+    box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px color-mix(in srgb, var(--color-primaria), transparent 80%);
+}
+
+.trigger:hover:not(:disabled) {
+    border-color: color-mix(in srgb, var(--color-primaria), transparent 50%);
+}
+
+.trigger:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.content {
+    z-index: 50;
+    min-width: 8rem;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--color-secundaria), transparent 90%);
+    background-color: var(--color-white);
+    color: var(--color-secundaria);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    animation-duration: 200ms;
+}
+
+.item {
+    position: relative;
+    display: flex;
+    width: 100%;
+    cursor: default;
+    user-select: none;
+    align-items: center;
+    border-radius: 4px;
+    padding: 6px 8px 6px 32px;
+    font-size: 14px;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.item:focus {
+    background-color: color-mix(in srgb, var(--color-primaria), transparent 90%);
+    color: var(--color-primaria);
+}
+
+.separator {
+    flex-shrink: 0;
+    padding-bottom: 12px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+/* Label do nível */
+.levelLabel {
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 0;
+    padding: 0 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+/* Conteúdo do trigger */
+.triggerContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Ícone chevron do trigger */
+.triggerIcon {
+    color: var(--color-primaria);
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+/* Viewport do select */
+.viewport {
+    padding: 4px;
+}
+
+/* Indicador de seleção */
+.itemIndicator {
+    position: absolute;
+    left: 8px;
+    display: flex;
+    height: 14px;
+    width: 14px;
+    align-items: center;
+    justify-content: center;
+}

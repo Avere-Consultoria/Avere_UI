@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* --- CORES --- */
+    --color-primaria: #0083CB;
+    --color-secundaria: #081F28;
+    --color-fundo: #D6D6D6;
+    --color-alerta: #FF9500;
+    --color-erro: #FF0000;
+    --color-white: #FFFFFF;
+
+    /* --- TIPOGRAFIA (Base) --- */
+    --font-family: 'Montserrat', sans-serif;
+
+    /* Display Large - 64/72 */
+    --text-display-l-size: 64px;
+    --text-display-l-line: 72px;
+
+    /* Headline Large - 32/40 */
+    --text-headline-l-size: 32px;
+    --text-headline-l-line: 40px;
+
+    /* Title Medium - 16/24 */
+    --text-title-m-size: 16px;
+    --text-title-m-line: 24px;
+
+    /* Body Medium - 14/20 */
+    --text-body-m-size: 14px;
+    --text-body-m-line: 20px;
+
+    /* --- PESOS --- */
+    --weight-regular: 400;
+    --weight-medium: 500;
+    --weight-semibold: 600;
+    --weight-bold: 700;
+}

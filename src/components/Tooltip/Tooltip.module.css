@@ -1,0 +1,120 @@
+.content {
+    z-index: 50;
+    overflow: hidden;
+    border-radius: 6px;
+    /* rounded-md */
+    background-color: var(--color-secundaria);
+    padding: 6px 12px;
+    /* py-1.5 px-3 */
+    font-size: 12px;
+    /* text-xs */
+    color: var(--color-white);
+    font-family: var(--font-family);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    user-select: none;
+    pointer-events: none;
+
+    /* Animação Base */
+    animation-duration: 0.2s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+}
+
+/* Animações de Entrada baseadas no estado do Radix */
+.content[data-state='delayed-open'],
+.content[data-state='instant-open'] {
+    animation-name: tooltip-show;
+}
+
+.content[data-state='closed'] {
+    animation-name: tooltip-hide;
+}
+
+/* Animações de Slide conforme o lado */
+.content[data-side='top'] {
+    animation-name: slide-up;
+}
+
+.content[data-side='bottom'] {
+    animation-name: slide-down;
+}
+
+.content[data-side='left'] {
+    animation-name: slide-left;
+}
+
+.content[data-side='right'] {
+    animation-name: slide-right;
+}
+
+@keyframes tooltip-show {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes tooltip-hide {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-down {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slide-left {
+    from {
+        opacity: 0;
+        transform: translateX(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-right {
+    from {
+        opacity: 0;
+        transform: translateX(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

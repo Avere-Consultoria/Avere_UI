@@ -1,0 +1,39 @@
+.spinner {
+    animation: spin 1s linear infinite;
+    color: var(--color-primaria);
+}
+
+.sm {
+    width: 16px;
+    height: 16px;
+}
+
+/* h-4 w-4 */
+.md {
+    width: 24px;
+    height: 24px;
+}
+
+/* h-6 w-6 */
+.lg {
+    width: 32px;
+    height: 32px;
+}
+
+/* h-8 w-8 */
+.xl {
+    width: 48px;
+    height: 48px;
+}
+
+/* h-12 w-12 */
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

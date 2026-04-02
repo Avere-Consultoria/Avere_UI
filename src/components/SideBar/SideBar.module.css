@@ -1,0 +1,269 @@
+/* Overlay para Mobile */
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background-color: color-mix(in srgb, var(--color-secundaria), transparent 20%);
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s;
+}
+
+/* Container Principal */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-secundaria);
+    color: var(--color-white);
+    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+}
+
+.expanded {
+    width: 256px;
+}
+
+.collapsed {
+    width: 80px;
+}
+
+/* --- Header / Logo --- */
+.header {
+    display: flex;
+    height: auto;
+    min-height: 72px;
+    flex-shrink: 0;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    transition: padding 0.3s ease;
+}
+
+/* Ajuste do header quando a sidebar está colapsada */
+.collapsed .header {
+    height: 72px;
+    min-height: 72px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.logoContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+/* Ajuste do container da logo quando colapsado */
+.collapsed .logoContainer {
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+/* Classes para as imagens da Logo (Chamar lá no Layout.tsx) */
+.logoImgFull {
+    height: auto;
+    max-height: 52px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.logoImgIcon {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+}
+
+.toggleButton {
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.toggleButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Navegação --- */
+.nav {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Item da Sidebar */
+.item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 6px;
+    padding: 10px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: color-mix(in srgb, var(--color-fundo), transparent 30%);
+    outline: none;
+}
+
+.item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+}
+
+.itemActive {
+    background-color: var(--color-primaria) !important;
+    color: var(--color-white) !important;
+}
+
+.itemCollapsed {
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.itemExpanded {
+    justify-content: flex-start;
+    padding-left: 16px;
+}
+
+.itemLabel {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    margin-left: 12px;
+}
+
+.labelHidden {
+    width: 0;
+    opacity: 0;
+    margin-left: 0;
+}
+
+/* --- Footer / Usuário --- */
+.footer {
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+}
+
+.footerCollapsed {
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.userProfileButton {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--color-white);
+    transition: background-color 0.2s ease;
+}
+
+.userProfileButton:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.userButtonCollapsed {
+    justify-content: center;
+    padding: 8px 0;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 12px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.userName {
+    font-weight: 500;
+    color: color-mix(in srgb, var(--color-white), transparent 40%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userRole {
+    font-weight: 500;
+    color: color-mix(in srgb, var(--color-white), transparent 40%);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userMenuIcon {
+    opacity: 0.5;
+    margin-left: 8px;
+    flex-shrink: 0;
+}
+
+/* Utilitários mobile */
+@media (max-width: 1023px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .mobileOpen {
+        transform: translateX(0);
+    }
+}
+
+@media (min-width: 1024px) {
+    .sidebar {
+        position: sticky;
+        top: 0;
+    }
+}
+
+/* Logo placeholder (skeleton) */
+.logoPlaceholder {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    animation: logoPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes logoPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}

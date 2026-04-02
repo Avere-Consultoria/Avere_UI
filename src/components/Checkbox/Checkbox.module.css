@@ -1,0 +1,74 @@
+.container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    user-select: none;
+    font-family: var(--font-family);
+    /* Montserrat */
+}
+
+.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Input nativo escondido para acessibilidade */
+.hiddenInput {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Caixa visual customizada */
+.visualBox {
+    display: flex;
+    height: 18px;
+    /* Ajustado para um pouco maior conforme comum em UI kits modernos */
+    width: 18px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 1px solid var(--color-secundaria);
+    background-color: transparent;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    color: transparent;
+    /* Esconde o ícone (Check) por padrão */
+}
+
+/* Quando o input está focado via teclado (Foco Avere) */
+.hiddenInput:focus-visible+.visualBox {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--color-white), 0 0 0 4px var(--color-primaria);
+}
+
+/* Quando o input está checado */
+.hiddenInput:checked+.visualBox {
+    background-color: var(--color-primaria);
+    border-color: var(--color-primaria);
+    color: var(--color-white);
+    /* Mostra o ícone */
+}
+
+.label {
+    font-size: var(--text-body-m-size);
+    /* 14px */
+    line-height: var(--text-body-m-line);
+    /* 20px */
+    font-weight: var(--weight-medium);
+    color: var(--color-secundaria);
+}
+
+.iconWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
