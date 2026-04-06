@@ -1,5 +1,5 @@
-import { createContext, useContext, type ElementType, type HTMLAttributes, type ReactNode } from 'react';
-import { ChevronLeft, ChevronRight, MoreVertical } from 'lucide-react';
+import { createContext, useContext, useState, type ElementType, type HTMLAttributes, type ReactNode } from 'react';
+import { ChevronLeft, ChevronRight, MoreVertical, LogOut } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Avatar } from '../Avatar';
 import styles from './SideBar.module.css';
@@ -50,6 +50,7 @@ export interface SideBarProps extends HTMLAttributes<HTMLElement> {
     userName?: string;
     userRole?: string;
     userAvatarUrl?: string;
+    onLogout?: () => void; // <-- 1. Nova Propriedade Adicionada
 }
 
 export function SideBar({
@@ -62,9 +63,14 @@ export function SideBar({
     userName = "Usuário",
     userRole = "Colaborador",
     userAvatarUrl,
+    onLogout, // <-- Recebendo a prop
     className,
     ...props
 }: SideBarProps) {
+
+    // <-- 2. Estado para controlar se o menu de utilizador está aberto
+    const [userMenuOpen, setUserMenuOpen] = useState(false);
+
     return (
         <>
             {isOpenMobile && (
@@ -103,8 +109,37 @@ export function SideBar({
                     </nav>
                 </SidebarContext.Provider>
 
-                <div className={cn(styles.footer, isCollapsed && styles.footerCollapsed)}>
-                    <button className={cn(styles.userProfileButton, isCollapsed && styles.userButtonCollapsed)}>
+                <div className={cn(styles.footer, isCollapsed && styles.footerCollapsed)} style={{ position: 'relative' }}>
+
+                    {/* <-- 3. O Dropdown Menu que aparece ao clicar --> */}
+                    {userMenuOpen && onLogout && !isCollapsed && (
+                        <div style={{
+                            position: 'absolute', bottom: 'calc(100% + 8px)', left: '16px', right: '16px',
+                            background: '#fff', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '8px',
+                            padding: '4px', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)', zIndex: 50
+                        }}>
+                            <button
+                                onClick={onLogout}
+                                style={{
+                                    width: '100%', display: 'flex', alignItems: 'center', gap: '8px',
+                                    padding: '10px 12px', background: 'transparent', border: 'none',
+                                    color: '#EF4444', fontSize: '14px', fontWeight: 500, cursor: 'pointer',
+                                    borderRadius: '6px', textAlign: 'left', transition: 'background 0.2s'
+                                }}
+                                onMouseEnter={(e) => e.currentTarget.style.background = '#FEF2F2'}
+                                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                            >
+                                <LogOut size={16} />
+                                Sair do Sistema
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Botão de Perfil Atualizado para abrir/fechar o menu */}
+                    <button
+                        className={cn(styles.userProfileButton, isCollapsed && styles.userButtonCollapsed)}
+                        onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    >
                         <Avatar
                             src={userAvatarUrl}
                             initials={userName.substring(0, 2).toUpperCase()}

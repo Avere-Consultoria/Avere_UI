@@ -33,63 +33,89 @@ export function HierarchicalCombobox({
 }: HierarchicalComboboxProps) {
     return (
         <div className={cn(styles.container, className)}>
-            {levels.map((level, index) => (
-                <React.Fragment key={level.id}>
-                    <div className={styles.levelWrapper}>
-                        {level.label && (
-                            <Typography
-                                as="label"
-                                variant="p"
-                                className={styles.levelLabel}
-                                style={{ color: 'color-mix(in srgb, var(--color-secundaria), transparent 30%)' }}
-                            >
-                                {level.label}
-                            </Typography>
-                        )}
+            {levels.map((level, index) => {
+                // <-- A MÁGICA COMEÇA AQUI: Quantas opções temos? -->
+                const isSingleOption = level.options.length === 1;
 
-                        <SelectPrimitive.Root
-                            value={level.value}
-                            defaultValue={level.defaultValue}
-                            onValueChange={level.onChange}
-                            disabled={level.disabled}
-                        >
-                            <SelectPrimitive.Trigger className={styles.trigger}>
-                                <div className={styles.triggerContent}>
-                                    {level.icon && <level.icon size={16} style={{ color: 'var(--color-secundaria)', opacity: 0.7 }} />}
-                                    <SelectPrimitive.Value placeholder={level.placeholder || "Selecione..."} />
+                return (
+                    <React.Fragment key={level.id}>
+                        <div className={styles.levelWrapper}>
+                            {level.label && (
+                                <Typography
+                                    as="label"
+                                    variant="p"
+                                    className={styles.levelLabel}
+                                    style={{ color: 'color-mix(in srgb, var(--color-secundaria), transparent 30%)' }}
+                                >
+                                    {level.label}
+                                </Typography>
+                            )}
+
+                            {/* Se houver apenas 1 opção, mostramos um Badge Estático */}
+                            {isSingleOption ? (
+                                <div className={styles.trigger} style={{
+                                    background: 'transparent',
+                                    border: 'none',
+                                    boxShadow: 'none',
+                                    paddingLeft: 0,
+                                    cursor: 'default',
+                                    paddingRight: '12px' // Espaço extra antes do separador
+                                }}>
+                                    <div className={styles.triggerContent}>
+                                        {level.icon && <level.icon size={16} style={{ color: 'var(--color-secundaria)', opacity: 0.7 }} />}
+                                        <span style={{ fontSize: '14px', fontWeight: 500, color: '#374151' }}>
+                                            {level.options[0].label}
+                                        </span>
+                                    </div>
+                                    {/* Não tem o ChevronsUpDown porque não é clicável! */}
                                 </div>
-                                <SelectPrimitive.Icon asChild>
-                                    <ChevronsUpDown size={16} className={styles.triggerIcon} />
-                                </SelectPrimitive.Icon>
-                            </SelectPrimitive.Trigger>
+                            ) : (
+                                /* Se houver mais de 1 opção, mostramos o Select normal do Radix */
+                                <SelectPrimitive.Root
+                                    value={level.value}
+                                    defaultValue={level.defaultValue}
+                                    onValueChange={level.onChange}
+                                    disabled={level.disabled}
+                                >
+                                    <SelectPrimitive.Trigger className={styles.trigger}>
+                                        <div className={styles.triggerContent}>
+                                            {level.icon && <level.icon size={16} style={{ color: 'var(--color-secundaria)', opacity: 0.7 }} />}
+                                            <SelectPrimitive.Value placeholder={level.placeholder || "Selecione..."} />
+                                        </div>
+                                        <SelectPrimitive.Icon asChild>
+                                            <ChevronsUpDown size={16} className={styles.triggerIcon} />
+                                        </SelectPrimitive.Icon>
+                                    </SelectPrimitive.Trigger>
 
-                            <SelectPrimitive.Portal>
-                                <SelectPrimitive.Content className={styles.content} position="popper" sideOffset={4}>
-                                    <SelectPrimitive.Viewport className={styles.viewport}>
-                                        {level.options.map((option) => (
-                                            <SelectPrimitive.Item key={option.value} value={option.value} className={styles.item}>
-                                                <span className={styles.itemIndicator}>
-                                                    <SelectPrimitive.ItemIndicator>
-                                                        <Check size={16} />
-                                                    </SelectPrimitive.ItemIndicator>
-                                                </span>
-                                                <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
-                                            </SelectPrimitive.Item>
-                                        ))}
-                                    </SelectPrimitive.Viewport>
-                                </SelectPrimitive.Content>
-                            </SelectPrimitive.Portal>
-                        </SelectPrimitive.Root>
-                    </div>
-
-                    {/* Separador entre os níveis */}
-                    {index < levels.length - 1 && (
-                        <div className={styles.separator}>
-                            <ChevronRight size={16} style={{ color: 'var(--color-secundaria)', opacity: 0.4 }} strokeWidth={2.5} />
+                                    <SelectPrimitive.Portal>
+                                        <SelectPrimitive.Content className={styles.content} position="popper" sideOffset={4}>
+                                            <SelectPrimitive.Viewport className={styles.viewport}>
+                                                {level.options.map((option) => (
+                                                    <SelectPrimitive.Item key={option.value} value={option.value} className={styles.item}>
+                                                        <span className={styles.itemIndicator}>
+                                                            <SelectPrimitive.ItemIndicator>
+                                                                <Check size={16} />
+                                                            </SelectPrimitive.ItemIndicator>
+                                                        </span>
+                                                        <SelectPrimitive.ItemText>{option.label}</SelectPrimitive.ItemText>
+                                                    </SelectPrimitive.Item>
+                                                ))}
+                                            </SelectPrimitive.Viewport>
+                                        </SelectPrimitive.Content>
+                                    </SelectPrimitive.Portal>
+                                </SelectPrimitive.Root>
+                            )}
                         </div>
-                    )}
-                </React.Fragment>
-            ))}
+
+                        {/* Separador entre os níveis */}
+                        {index < levels.length - 1 && (
+                            <div className={styles.separator}>
+                                <ChevronRight size={16} style={{ color: 'var(--color-secundaria)', opacity: 0.4 }} strokeWidth={2.5} />
+                            </div>
+                        )}
+                    </React.Fragment>
+                );
+            })}
         </div>
     )
 }
