@@ -27,6 +27,7 @@ export * from './components/Select';
 // Overlays e Feedback
 export * from './components/Tooltip';
 export * from './components/Toaster';
+export { toast } from 'sonner';
 export * from './components/Modal';
 export * from './components/DropdownMenu';
 export * from './components/Drawer';
