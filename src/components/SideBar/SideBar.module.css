@@ -13,7 +13,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    height: 100dvh;
     z-index: 50;
     display: flex;
     flex-direction: column;
@@ -45,7 +45,6 @@
     transition: padding 0.3s ease;
 }
 
-/* Ajuste do header quando a sidebar está colapsada */
 .collapsed .header {
     height: 72px;
     min-height: 72px;
@@ -63,26 +62,10 @@
     margin-top: 4px;
 }
 
-/* Ajuste do container da logo quando colapsado */
 .collapsed .logoContainer {
     align-items: center;
     width: 100%;
     margin-top: 0;
-}
-
-/* Classes para as imagens da Logo (Chamar lá no Layout.tsx) */
-.logoImgFull {
-    height: auto;
-    max-height: 52px;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-.logoImgIcon {
-    height: 32px;
-    width: 32px;
-    object-fit: contain;
 }
 
 .toggleButton {
@@ -120,7 +103,7 @@
     width: 100%;
     border-radius: 6px;
     padding: 10px;
-    transition: all 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
     font-size: 14px;
     font-weight: 500;
     border: none;
@@ -136,8 +119,8 @@
 }
 
 .itemActive {
-    background-color: var(--color-primaria) !important;
-    color: var(--color-white) !important;
+    background-color: var(--color-primaria);
+    color: var(--color-white);
 }
 
 .itemCollapsed {
@@ -165,6 +148,7 @@
 
 /* --- Footer / Usuário --- */
 .footer {
+    position: relative;
     margin-top: auto;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding: 12px;
@@ -174,6 +158,49 @@
     padding: 12px 0;
     display: flex;
     justify-content: center;
+}
+
+/* Menu dropdown do usuário */
+.userMenu {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 8px;
+    right: 8px;
+    background: var(--color-white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 4px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 51;
+}
+
+.userMenuCollapsed {
+    left: calc(100% + 8px);
+    right: auto;
+    min-width: 160px;
+    bottom: 8px;
+}
+
+.userMenuLogout {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: transparent;
+    border: none;
+    color: var(--color-erro);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px;
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.userMenuLogout:hover {
+    background-color: color-mix(in srgb, var(--color-erro), var(--color-white) 90%);
 }
 
 .userProfileButton {
@@ -207,15 +234,8 @@
     overflow: hidden;
 }
 
-.userName {
-    font-weight: 500;
-    color: color-mix(in srgb, var(--color-white), transparent 40%);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.userRole {
+.userText {
+    font-size: 13px;
     font-weight: 500;
     color: color-mix(in srgb, var(--color-white), transparent 40%);
     white-space: nowrap;
@@ -257,7 +277,6 @@
 }
 
 @keyframes logoPulse {
-
     0%,
     100% {
         opacity: 1;
