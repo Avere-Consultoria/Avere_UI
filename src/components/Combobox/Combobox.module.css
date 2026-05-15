@@ -16,6 +16,7 @@
 .triggerWrapper {
     position: relative;
     width: 100%;
+    cursor: pointer;
 }
 
 .inputField {
@@ -29,9 +30,11 @@
     color: var(--color-secundaria);
     transition: all 0.2s ease;
     outline: none;
+    cursor: pointer;
 }
 
 .inputField:focus {
+    cursor: text;
     border-color: var(--color-primaria);
     box-shadow: 0 0 0 2px color-mix(in srgb, var(--color-primaria), transparent 80%);
 }

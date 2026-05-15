@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, forwardRef } from 'react';
-import { ChevronDown, Check, Search } from 'lucide-react';
+import { ChevronDown, Check } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import styles from './Combobox.module.css';
 
@@ -36,10 +36,12 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
             setIsOpen(false);
         };
 
-        // Sincroniza o searchTerm com o valor selecionado externamente
+        // Sincroniza o searchTerm com o valor selecionado externamente (só quando fechado)
         useEffect(() => {
-            if (selectedOption) setSearchTerm(selectedOption.label);
-        }, [selectedOption]);
+            if (!isOpen) {
+                setSearchTerm(selectedOption?.label || '');
+            }
+        }, [selectedOption, isOpen]);
 
         // Fecha ao clicar fora
         useEffect(() => {
@@ -59,7 +61,6 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                 {label && <label className={styles.label}>{label}</label>}
 
                 <div className={styles.triggerWrapper}>
-                    <Search size={16} className={styles.searchIcon} />
                     <input
                         ref={ref}
                         type="text"
@@ -70,7 +71,10 @@ const Combobox = forwardRef<HTMLInputElement, ComboboxProps>(
                             setSearchTerm(e.target.value);
                             setIsOpen(true);
                         }}
-                        onFocus={() => setIsOpen(true)}
+                        onFocus={() => {
+                            setSearchTerm(''); // limpa o filtro ao abrir para mostrar todas as opções
+                            setIsOpen(true);
+                        }}
                         {...props}
                     />
                     <ChevronDown
