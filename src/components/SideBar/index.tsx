@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useRef, useEffect, type ElementTyp
 import { ChevronLeft, ChevronRight, MoreVertical, LogOut } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Avatar } from '../Avatar';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '../Tooltip';
 import styles from './SideBar.module.css';
 
 const SidebarContext = createContext({ isCollapsed: false });
@@ -10,18 +11,23 @@ export interface SideBarItemProps extends HTMLAttributes<HTMLButtonElement> {
     icon: ElementType;
     label: string;
     active?: boolean;
+    /** Contagem/aviso à direita do rótulo (ficha sidebar: badge é elemento,
+     *  não texto no label). No modo rail vira um dot sobre o ícone — a
+     *  informação de "tem pendência" não some quando a barra colapsa. */
+    badge?: ReactNode;
 }
 
 export function SideBarItem({
     icon: Icon,
     label,
     active,
+    badge,
     className,
     ...props
 }: SideBarItemProps) {
     const { isCollapsed } = useContext(SidebarContext);
 
-    return (
+    const button = (
         <button
             className={cn(
                 styles.item,
@@ -29,14 +35,47 @@ export function SideBarItem({
                 isCollapsed ? styles.itemCollapsed : styles.itemExpanded,
                 className
             )}
-            title={isCollapsed ? label : undefined}
+            aria-current={active ? 'page' : undefined}
             {...props}
         >
-            <Icon size={isCollapsed ? 24 : 20} />
+            <span className={styles.iconWrap}>
+                <Icon size={20} />
+                {isCollapsed && badge != null && badge !== 0 && <span className={styles.badgeDot} aria-hidden="true" />}
+            </span>
             <span className={cn(styles.itemLabel, isCollapsed && styles.labelHidden)}>
                 {label}
             </span>
+            {!isCollapsed && badge != null && badge !== 0 && (
+                <span className={styles.badge}>{badge}</span>
+            )}
         </button>
+    );
+
+    // Rail: tooltip de verdade (DS) no lugar do title nativo.
+    if (!isCollapsed) return button;
+    return (
+        <TooltipProvider delayDuration={150}>
+            <Tooltip>
+                <TooltipTrigger asChild>{button}</TooltipTrigger>
+                <TooltipContent side="right">{label}</TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+    );
+}
+
+export interface SideBarSectionProps {
+    label: string;
+}
+
+/** Rótulo de grupo (ficha sidebar: seções nomeadas, caixa alta, divisor).
+ *  Colapsada, mostra só a linha divisória. */
+export function SideBarSection({ label }: SideBarSectionProps) {
+    const { isCollapsed } = useContext(SidebarContext);
+    return (
+        <div className={cn(styles.section, isCollapsed && styles.sectionCollapsed)}>
+            {!isCollapsed && <span className={styles.sectionLabel}>{label}</span>}
+            <span className={styles.sectionRule} />
+        </div>
     );
 }
 
@@ -116,7 +155,7 @@ export function SideBar({
                 </div>
 
                 <SidebarContext.Provider value={{ isCollapsed }}>
-                    <nav className={styles.nav}>
+                    <nav className={styles.nav} aria-label="Principal">
                         {children}
                     </nav>
                 </SidebarContext.Provider>
@@ -144,8 +183,8 @@ export function SideBar({
                         {!isCollapsed && (
                             <>
                                 <div className={styles.userInfo}>
-                                    <span className={styles.userText}>{userName}</span>
-                                    <span className={styles.userText}>{userRole}</span>
+                                    <span className={styles.userName}>{userName}</span>
+                                    <span className={styles.userRole}>{userRole}</span>
                                 </div>
                                 <MoreVertical size={16} className={styles.userMenuIcon} />
                             </>

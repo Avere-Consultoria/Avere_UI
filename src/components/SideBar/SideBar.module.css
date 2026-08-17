@@ -19,7 +19,7 @@
     flex-direction: column;
     background-color: var(--color-secundaria);
     color: var(--color-white);
-    transition: width 0.3s ease-in-out, transform 0.3s ease-in-out;
+    transition: width 240ms cubic-bezier(.2, 0, 0, 1), transform 240ms cubic-bezier(.2, 0, 0, 1);
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
     overflow-x: hidden;
 }
@@ -113,14 +113,60 @@
     outline: none;
 }
 
+/* Foco de teclado visível (WCAG 2.4.7) — anel interno para não vazar do rail */
+.item:focus-visible {
+    outline: 2px solid var(--color-primaria);
+    outline-offset: -2px;
+}
+
+/* Ícone com ancoragem para o dot do rail */
+.iconWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Badge de contagem (expandida) — pill à direita do rótulo */
+.badge {
+    margin-left: auto;
+    background: var(--color-primaria);
+    color: var(--color-white);
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1;
+    padding: 3px 7px;
+    font-variant-numeric: tabular-nums;
+}
+
+.itemActive .badge {
+    background: var(--color-white);
+    color: var(--color-accent, var(--color-primaria));
+}
+
+/* Badge no rail: dot no canto do ícone — o aviso não some ao colapsar */
+.badgeDot {
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 9999px;
+    background: var(--color-alerta);
+    border: 2px solid var(--color-secundaria);
+}
+
 .item:hover {
     background-color: rgba(255, 255, 255, 0.05);
     color: var(--color-white);
 }
 
 .itemActive {
-    background-color: var(--color-primaria);
+    background-color: var(--color-accent, var(--color-primaria));
     color: var(--color-white);
+    font-weight: 600;
 }
 
 .itemCollapsed {
@@ -136,7 +182,7 @@
 .itemLabel {
     white-space: nowrap;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 240ms cubic-bezier(.2, 0, 0, 1);
     margin-left: 12px;
 }
 
@@ -144,6 +190,33 @@
     width: 0;
     opacity: 0;
     margin-left: 0;
+}
+
+/* --- Seção / grupo de itens --- */
+.section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 8px 6px;
+}
+
+.sectionCollapsed {
+    padding: 16px 12px 8px;
+}
+
+.sectionLabel {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: color-mix(in srgb, var(--color-white), transparent 45%);
+    white-space: nowrap;
+}
+
+.sectionRule {
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.12);
 }
 
 /* --- Footer / Usuário --- */
@@ -234,10 +307,19 @@
     overflow: hidden;
 }
 
-.userText {
+.userName {
     font-size: 13px;
+    font-weight: 600;
+    color: var(--color-white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userRole {
+    font-size: 11px;
     font-weight: 500;
-    color: color-mix(in srgb, var(--color-white), transparent 40%);
+    color: color-mix(in srgb, var(--color-white), transparent 45%);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
