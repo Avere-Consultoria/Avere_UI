@@ -29,7 +29,7 @@
 }
 
 .collapsed {
-    width: 80px;
+    width: 64px;
 }
 
 /* --- Header / Logo --- */
@@ -100,6 +100,8 @@
 .item {
     display: flex;
     align-items: center;
+    box-sizing: border-box;
+    text-decoration: none;
     width: 100%;
     border-radius: 6px;
     padding: 10px;

@@ -7,7 +7,7 @@ import styles from './SideBar.module.css';
 
 const SidebarContext = createContext({ isCollapsed: false });
 
-export interface SideBarItemProps extends HTMLAttributes<HTMLButtonElement> {
+export interface SideBarItemProps extends HTMLAttributes<HTMLElement> {
     icon: ElementType;
     label: string;
     active?: boolean;
@@ -15,6 +15,10 @@ export interface SideBarItemProps extends HTMLAttributes<HTMLButtonElement> {
      *  não texto no label). No modo rail vira um dot sobre o ícone — a
      *  informação de "tem pendência" não some quando a barra colapsa. */
     badge?: ReactNode;
+    /** Rota do item. Com href o item renderiza <a> (padrão APG para
+     *  navegação): Ctrl/Cmd+clique e botão do meio abrem em nova aba.
+     *  O app SPA intercepta o clique simples (preventDefault + navigate). */
+    href?: string;
 }
 
 export function SideBarItem({
@@ -22,13 +26,16 @@ export function SideBarItem({
     label,
     active,
     badge,
+    href,
     className,
     ...props
 }: SideBarItemProps) {
     const { isCollapsed } = useContext(SidebarContext);
 
+    const Comp: any = href ? 'a' : 'button';
     const button = (
-        <button
+        <Comp
+            href={href}
             className={cn(
                 styles.item,
                 active && styles.itemActive,
@@ -48,7 +55,7 @@ export function SideBarItem({
             {!isCollapsed && badge != null && badge !== 0 && (
                 <span className={styles.badge}>{badge}</span>
             )}
-        </button>
+        </Comp>
     );
 
     // Rail: tooltip de verdade (DS) no lugar do title nativo.
