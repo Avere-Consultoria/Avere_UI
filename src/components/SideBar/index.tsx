@@ -1,11 +1,18 @@
-import { createContext, useContext, useState, useRef, useEffect, type ElementType, type HTMLAttributes, type ReactNode } from 'react';
-import { ChevronLeft, ChevronRight, MoreVertical, LogOut } from 'lucide-react';
+import { createContext, useContext, type ElementType, type HTMLAttributes, type ReactNode } from 'react';
+import { ChevronLeft, ChevronRight, LogOut } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { Avatar } from '../Avatar';
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '../Tooltip';
 import styles from './SideBar.module.css';
 
 const SidebarContext = createContext({ isCollapsed: false });
+
+// "Luiz Henrique Ulmi" → "LU" · "Maria Julia" → "MJ" (primeiro + último nome)
+function iniciais(nome: string): string {
+    const partes = nome.trim().split(/\s+/);
+    if (partes.length === 1) return partes[0].substring(0, 2).toUpperCase();
+    return (partes[0][0] + partes[partes.length - 1][0]).toUpperCase();
+}
 
 export interface SideBarItemProps extends HTMLAttributes<HTMLElement> {
     icon: ElementType;
@@ -113,22 +120,6 @@ export function SideBar({
     className,
     ...props
 }: SideBarProps) {
-    const [userMenuOpen, setUserMenuOpen] = useState(false);
-    const footerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (!userMenuOpen) return;
-
-        function handleClickOutside(event: MouseEvent) {
-            if (footerRef.current && !footerRef.current.contains(event.target as Node)) {
-                setUserMenuOpen(false);
-            }
-        }
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [userMenuOpen]);
-
     return (
         <>
             {isOpenMobile && (
@@ -167,36 +158,39 @@ export function SideBar({
                     </nav>
                 </SidebarContext.Provider>
 
-                <div ref={footerRef} className={cn(styles.footer, isCollapsed && styles.footerCollapsed)}>
-                    {userMenuOpen && onLogout && (
-                        <div className={cn(styles.userMenu, isCollapsed && styles.userMenuCollapsed)}>
-                            <button className={styles.userMenuLogout} onClick={onLogout}>
-                                <LogOut size={16} />
-                                Sair do Sistema
-                            </button>
-                        </div>
-                    )}
-
-                    <button
-                        className={cn(styles.userProfileButton, isCollapsed && styles.userButtonCollapsed)}
-                        onClick={() => setUserMenuOpen(prev => !prev)}
-                    >
+                <div className={cn(styles.footer, isCollapsed && styles.footerCollapsed)}>
+                    <div className={cn(styles.userRow, isCollapsed && styles.userRowCollapsed)}>
                         <Avatar
                             src={userAvatarUrl}
-                            initials={userName.substring(0, 2).toUpperCase()}
+                            initials={iniciais(userName)}
                             size={isCollapsed ? "sm" : "md"}
+                            className={styles.brandAvatar}
                         />
 
                         {!isCollapsed && (
-                            <>
-                                <div className={styles.userInfo}>
-                                    <span className={styles.userName}>{userName}</span>
-                                    <span className={styles.userRole}>{userRole}</span>
-                                </div>
-                                <MoreVertical size={16} className={styles.userMenuIcon} />
-                            </>
+                            <div className={styles.userInfo}>
+                                <span className={styles.userName}>{userName}</span>
+                                <span className={styles.userRole}>{userRole}</span>
+                            </div>
                         )}
-                    </button>
+
+                        {onLogout && (
+                            <TooltipProvider delayDuration={150}>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <button
+                                            className={styles.logoutButton}
+                                            onClick={onLogout}
+                                            aria-label="Sair do Sistema"
+                                        >
+                                            <LogOut size={16} />
+                                        </button>
+                                    </TooltipTrigger>
+                                    <TooltipContent side="right">Sair do Sistema</TooltipContent>
+                                </Tooltip>
+                            </TooltipProvider>
+                        )}
+                    </div>
                 </div>
             </aside>
         </>

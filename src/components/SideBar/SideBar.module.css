@@ -235,78 +235,63 @@
     justify-content: center;
 }
 
-/* Menu dropdown do usuário */
-.userMenu {
-    position: absolute;
-    bottom: calc(100% + 8px);
-    left: 8px;
-    right: 8px;
-    background: var(--color-white);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 4px;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    z-index: 51;
-}
-
-.userMenuCollapsed {
-    left: calc(100% + 8px);
-    right: auto;
-    min-width: 160px;
-    bottom: 8px;
-}
-
-.userMenuLogout {
-    width: 100%;
+/* Linha do perfil: avatar + identidade + sair (sem menu — a única ação
+   fica visível, um clique; ficha: kebab de item único é cerimônia) */
+.userRow {
     display: flex;
     align-items: center;
+    gap: 12px;
+    padding: 4px 8px;
+}
+
+.userRowCollapsed {
+    flex-direction: column;
     gap: 8px;
-    padding: 10px 12px;
-    background: transparent;
+    padding: 4px 0;
+}
+
+.brandAvatar {
+    background-color: var(--color-primaria);
+    color: var(--color-white);
     border: none;
-    color: var(--color-erro);
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 6px;
-    text-align: left;
-    transition: background-color 0.2s;
+    font-weight: 600;
 }
 
-.userMenuLogout:hover {
-    background-color: color-mix(in srgb, var(--color-erro), var(--color-white) 90%);
-}
-
-.userProfileButton {
+.logoutButton {
     display: flex;
     align-items: center;
-    width: 100%;
+    justify-content: center;
     background: transparent;
     border: none;
+    cursor: pointer;
+    color: color-mix(in srgb, var(--color-white), transparent 45%);
     padding: 8px;
     border-radius: 8px;
-    cursor: pointer;
-    text-align: left;
-    color: var(--color-white);
-    transition: background-color 0.2s ease;
+    margin-left: auto;
+    flex-shrink: 0;
+    transition: background-color 150ms ease, color 150ms ease;
 }
 
-.userProfileButton:hover {
-    background-color: rgba(255, 255, 255, 0.05);
+.userRowCollapsed .logoutButton {
+    margin-left: 0;
 }
 
-.userButtonCollapsed {
-    justify-content: center;
-    padding: 8px 0;
+.logoutButton:hover {
+    background-color: color-mix(in srgb, var(--color-erro), transparent 85%);
+    color: var(--color-erro);
+}
+
+.logoutButton:focus-visible {
+    outline: 2px solid var(--color-primaria);
+    outline-offset: -2px;
 }
 
 .userInfo {
     display: flex;
     flex-direction: column;
-    margin-left: 12px;
     flex: 1;
     overflow: hidden;
+    min-width: 0;
 }
 
 .userName {
@@ -325,12 +310,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.userMenuIcon {
-    opacity: 0.5;
-    margin-left: 8px;
-    flex-shrink: 0;
 }
 
 /* Utilitários mobile */
