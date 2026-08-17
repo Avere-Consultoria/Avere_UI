@@ -1,30 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
+/* ============================================================================
+   TOKENS AVERE UI — alinhados à fundação do Consolidador (ciclo 3, ago/2026)
+   ----------------------------------------------------------------------------
+   O bundle da lib NÃO embarca este arquivo: em produção os componentes
+   resolvem as variáveis do app hospedeiro (Consolidador_Front/src/styles/
+   tokens.css, a fonte da verdade). Este arquivo serve ao playground (dev)
+   e como referência dos nomes que os módulos podem consumir.
+   Fonte da fundação: fichas em Base-UI-UX/fundacoes (cor OKLCH, tipo híbrida).
+   ============================================================================ */
+
+/* Playground only — em produção as fontes vêm self-hosted do app. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400..700&family=Montserrat:wght@400..700&display=swap');
 
 :root {
-    /* --- CORES --- */
-    --color-primaria: #0083CB;
-    --color-secundaria: #081F28;
-    --color-fundo: #D6D6D6;
-    --color-alerta: #FF9500;
-    --color-erro: #FF0000;
+    /* --- Legado (nomes consumidos pelos module.css hoje) --- */
+    --color-primaria: #0083CB;      /* oklch(58.7% 0.145 244) — marca */
+    --color-secundaria: #081F28;    /* petróleo da marca */
+    --color-fundo: #F2F4F6;         /* gray-100 (era #D6D6D6) */
+    --color-alerta: #E8A13C;        /* warning-500 */
+    --color-erro: #E7343F;          /* danger-600 (era #FF0000 puro) */
     --color-white: #FFFFFF;
+    --color-borda: #E4E8EB;         /* gray-200 */
 
-    /* --- TIPOGRAFIA (Base) --- */
-    --font-family: 'Montserrat', sans-serif;
+    /* --- Tipografia híbrida: Montserrat = display/marca · Inter = UI/dados --- */
+    --font-family: 'Inter', system-ui, sans-serif;
+    --font-display: 'Montserrat', var(--font-family);
 
-    /* Display Large - 64/72 */
-    --text-display-l-size: 64px;
-    --text-display-l-line: 72px;
+    /* --- Semânticos (mesmos nomes do app; módulos novos usam estes) --- */
+    --color-text-primary: #0F1A21;   /* gray-900 */
+    --color-text-secondary: #4A565E; /* gray-600 */
+    --color-text-muted: #69747C;     /* gray-500 */
+    --color-text-disabled: #99A2A9;  /* gray-400 */
+    --color-border-subtle: #E4E8EB;  /* gray-200 */
+    --color-border-default: #CFD6DB; /* gray-300 */
+    --color-surface: #FFFFFF;
+    --color-surface-sunken: #F2F4F6; /* gray-100 */
+    --color-accent: #0071B6;         /* primary-600 — sólido de ação */
+    --color-accent-subtle: #EFF8FF;  /* primary-50 */
 
-    /* Headline Large - 32/40 */
+    /* --- Escala tipográfica (compatível + nova) --- */
+    --text-2xs: 0.6875rem;  /* 11 */
+    --text-xs: 0.75rem;     /* 12 */
+    --text-sm: 0.8125rem;   /* 13 */
+    --text-md: 0.875rem;    /* 14 */
+    --text-lg: 1rem;        /* 16 */
+    --text-xl: 1.25rem;     /* 20 */
+    --text-2xl: 1.5rem;     /* 24 */
+    --text-3xl: 2rem;       /* 32 */
+
+    /* Legado tipográfico (ainda referenciado em módulos antigos) */
+    --text-display-l-size: 40px;
+    --text-display-l-line: 44px;
     --text-headline-l-size: 32px;
     --text-headline-l-line: 40px;
-
-    /* Title Medium - 16/24 */
     --text-title-m-size: 16px;
     --text-title-m-line: 24px;
-
-    /* Body Medium - 14/20 */
     --text-body-m-size: 14px;
     --text-body-m-line: 20px;
 
@@ -33,4 +62,8 @@
     --weight-medium: 500;
     --weight-semibold: 600;
     --weight-bold: 700;
+
+    /* --- Tracking --- */
+    --tracking-tight: -0.02em;
+    --tracking-caps: 0.08em;
 }

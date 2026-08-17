@@ -218,22 +218,22 @@
 /* ── Title ─────────────────────────────────────────────────────────────────── */
 
 .title {
-    font-family: var(--font-family, 'Montserrat', sans-serif);
-    font-size: 16px;
-    font-weight: 700;
+    font-family: var(--font-display, var(--font-family));
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: var(--weight-semibold, 600);
     line-height: 1.3;
-    color: var(--color-secundaria, #081F28);
+    letter-spacing: -0.01em;
+    color: var(--color-text-primary, var(--color-secundaria, #081F28));
     margin: 0;
 }
 
 /* ── Description ───────────────────────────────────────────────────────────── */
 
 .description {
-    font-family: var(--font-family, 'Montserrat', sans-serif);
-    font-size: 13px;
+    font-family: var(--font-family);
+    font-size: var(--text-sm, 0.8125rem);
     font-weight: 400;
-    color: var(--color-secundaria, #081F28);
-    opacity: 0.5;
+    color: var(--color-text-secondary, #4A565E);
     margin: 4px 0 0 0;
 }
 

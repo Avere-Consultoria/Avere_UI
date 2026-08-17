@@ -88,18 +88,18 @@
 }
 
 .title {
+    font-family: var(--font-display, var(--font-family));
     font-size: 1.125rem;
-    /* text-lg */
     font-weight: var(--weight-semibold);
-    color: var(--color-secundaria);
-    line-height: 1;
+    color: var(--color-text-primary, var(--color-secundaria));
+    line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
 .description {
     font-size: 0.875rem;
     /* text-sm */
-    color: color-mix(in srgb, var(--color-secundaria), transparent 30%);
-    /* secundaria/70 */
+    color: var(--color-text-secondary, #4A565E);
     line-height: 1.5;
 }
 
