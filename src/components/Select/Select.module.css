@@ -39,6 +39,27 @@
     border-color: var(--color-erro);
 }
 
+.value {
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Medidor invisível: empilha todas as opções com altura 0 — o gatilho nasce
+   com a largura da MAIOR opção e não muda de tamanho ao trocar a seleção. */
+.sizer {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.sizer > span {
+    display: block;
+    white-space: nowrap;
+}
+
 .placeholder {
     color: color-mix(in srgb, var(--color-secundaria), transparent 50%);
 }

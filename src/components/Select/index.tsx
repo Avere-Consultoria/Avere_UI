@@ -14,6 +14,10 @@ export interface SelectProps {
     value?: string;
     onChange?: (value: string) => void;
     label?: string;
+    /** Gatilho reserva a largura da opção mais longa (para selects de cabeçalho
+     *  fora de formulário). Off por padrão — em containers estreitos com opções
+     *  longas isso estouraria o layout. */
+    fitOptions?: boolean;
     error?: string;
     placeholder?: string;
     className?: string;
@@ -24,6 +28,7 @@ const Select: React.FC<SelectProps> = ({
     value,
     onChange,
     label,
+    fitOptions,
     error,
     placeholder = "Selecione...",
     className
@@ -97,8 +102,14 @@ const Select: React.FC<SelectProps> = ({
                     setIsOpen(!isOpen);
                 }}
             >
-                <span className={cn(!selectedOption && styles.placeholder)}>
+                <span className={cn(styles.value, !selectedOption && styles.placeholder)}>
                     {selectedOption ? selectedOption.label : placeholder}
+                    {fitOptions && (
+                        <span aria-hidden="true" className={styles.sizer}>
+                            {options.map(o => <span key={String(o.value)}>{o.label}</span>)}
+                            {placeholder && <span>{placeholder}</span>}
+                        </span>
+                    )}
                 </span>
                 <ChevronDown
                     size={18}
