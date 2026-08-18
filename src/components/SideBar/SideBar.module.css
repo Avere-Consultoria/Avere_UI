@@ -21,7 +21,7 @@
     color: var(--color-white);
     transition: width 240ms cubic-bezier(.2, 0, 0, 1), transform 240ms cubic-bezier(.2, 0, 0, 1);
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
-    overflow-x: hidden;
+    overflow: visible;
 }
 
 .expanded {
@@ -38,10 +38,10 @@
     height: auto;
     min-height: 72px;
     flex-shrink: 0;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 16px;
+    padding: 16px 12px;
     transition: padding 0.3s ease;
 }
 
@@ -69,20 +69,33 @@
 }
 
 .toggleButton {
-    background: transparent;
-    border: none;
-    color: inherit;
+    position: absolute;
+    top: 26px;
+    right: -13px;
+    width: 26px;
+    height: 26px;
+    background: var(--color-secundaria);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: rgba(255, 255, 255, 0.85);
     cursor: pointer;
-    padding: 4px;
+    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 4px;
-    transition: background-color 0.2s;
+    border-radius: 9999px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.18);
+    z-index: 60;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .toggleButton:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: color-mix(in srgb, var(--color-secundaria), white 12%);
+    color: var(--color-white);
+}
+
+.toggleButton:focus-visible {
+    outline: 2px solid var(--color-primaria);
+    outline-offset: 1px;
 }
 
 /* --- Navegação --- */

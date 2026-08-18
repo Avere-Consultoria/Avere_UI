@@ -147,7 +147,7 @@ export function SideBar({
                             aria-expanded={!isCollapsed}
                             aria-label="Alternar menu lateral"
                         >
-                            {isCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+                            {isCollapsed ? <ChevronRight size={15} /> : <ChevronLeft size={15} />}
                         </button>
                     )}
                 </div>
